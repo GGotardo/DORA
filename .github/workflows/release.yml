@@ -1,4 +1,4 @@
-name: Development release
+name: Deployment
 
 on:
   push:
@@ -28,6 +28,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: build/libs
+          if-no-files-found: error
 
   deploy-dev:
     runs-on: 'ubuntu-latest'
