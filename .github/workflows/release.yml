@@ -1,4 +1,5 @@
 name: Development release
+
 on:
   push:
     branches:
@@ -30,7 +31,7 @@ jobs:
   deploy-dev:
     runs-on: 'ubuntu-latest'
     environment: 'development'
-    needs: build-and-publish
+    needs: [ build-and-publish ]
     steps:
       - name: Deploy development
       run: "aaa"
