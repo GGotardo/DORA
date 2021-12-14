@@ -26,6 +26,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Download gradle wrapper
+        run: ./gradlew wrapper --gradle-version 7.3.1 --distribution-type all
+
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
 
@@ -36,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v2.3.0
         with:
           # A file, directory or wildcard pattern that describes what to upload
-          path: build/libs/*.jar
-          if-no-files-found: warn
+          path: build/libs
+          if-no-files-found: error
