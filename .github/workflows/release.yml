@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +32,7 @@ jobs:
   deploy-dev:
     runs-on: 'ubuntu-latest'
     environment: 'development'
-    needs: [ build-and-publish ]
+    needs: build
     steps:
       - name: Deploy development
       run: "aaa"
@@ -39,7 +40,7 @@ jobs:
   deploy-prod:
     runs-on: 'ubuntu-latest'
     environment: 'prod'
-    needs: [ build-and-publish, deploy-dev ]
+    needs: [ build,deploy-dev ]
     steps:
       - name: Deploy prod
       run: "aaa"
