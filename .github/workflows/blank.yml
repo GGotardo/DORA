@@ -29,11 +29,10 @@ jobs:
       - name: Download gradle wrapper
         run: ./gradlew wrapper --gradle-version 7.3.1 --distribution-type all
 
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-
-      - name: Build with Gradle
-        run: ./gradlew build
+      - uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.3
+          arguments: build
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.0
