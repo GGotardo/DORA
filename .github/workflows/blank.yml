@@ -26,15 +26,14 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-
-      - name: Build with Gradle
-        run: ./gradlew build
+      - uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.3
+          arguments: build
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.0
         with:
           # A file, directory or wildcard pattern that describes what to upload
-          path: build/libs/*.jar
-          if-no-files-found: warn
+          path: build/libs
+          if-no-files-found: error
